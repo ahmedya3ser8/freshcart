@@ -8,6 +8,10 @@ import React from "react";
 import { FaStar } from "react-icons/fa6";
 import { FiLoader } from "react-icons/fi";
 import { LuLoaderCircle } from "react-icons/lu";
+import { Autoplay, EffectFade } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import 'swiper/css';
+import 'swiper/css/effect-fade';
 
 type TResponse = {
   data: IProduct
@@ -40,10 +44,22 @@ const ProductDetails = ({ productId }: {productId: string}) => {
   }
   return (
     <section className="py-6">
-      <div className="product flex items-center gap-5">
-        <div className="product_image">
-          <Image src={product?.data.imageCover as string} alt="product-details" width={300} height={300} className="w-full h-[350px]" />
-        </div>
+      <div className="product flex flex-col md:flex-row items-center gap-5">
+        <Swiper className="product_image w-full md:w-[300px] h-[300px] md:h-[350px]" 
+          spaceBetween={50} loop={true}
+          modules={[Autoplay, EffectFade]} 
+          autoplay={{
+            delay: 2000,
+            disableOnInteraction: false,
+          }}
+          slidesPerView={1}
+        >
+          {product?.data.images.map((productImg, index) => (
+            <SwiperSlide key={index}>
+              <Image src={productImg} alt="product-details" width={300} height={300} className="w-full h-full" />
+            </SwiperSlide>
+          ))}
+        </Swiper>
         <div className="product_body flex-1">
           <h3 className="text-[21px] mb-2">{product?.data.title}</h3>
           <p className="text-gray-400 mb-2">{product?.data.description}</p>
