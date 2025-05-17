@@ -34,8 +34,8 @@ const MainSlider = () => {
           ))}
         </Swiper>
         <div className="grid grid-cols-2 md:block">
-          <Image src={sliderImg7} alt="grocery-banner" height={200} className="w-full h-[200px]" priority />
-          <Image src={sliderImg6} alt="grocery-banner" height={200} className="w-full h-[200px]" priority />
+          <Image src={sliderImg7} alt="grocery-banner" height={200} className="w-full h-[200px]" />
+          <Image src={sliderImg6} alt="grocery-banner" height={200} className="w-full h-[200px]" />
         </div>
       </div>
     </section>

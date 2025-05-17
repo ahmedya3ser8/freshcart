@@ -3,7 +3,6 @@ import actAuthRegister from '@store/auth/act/actAuthRegister';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
 import { registerSchema, TRegister } from '@validations/registerSchema';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 export default function useRegister() {
@@ -22,8 +21,5 @@ export default function useRegister() {
       }
     })
   }
-  useEffect(() => {
-    document.title = 'Register'
-  }, [])
   return {loading, register, handleSubmit, errors, submitForm, token}
 }

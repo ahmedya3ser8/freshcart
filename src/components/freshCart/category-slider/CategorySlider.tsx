@@ -1,10 +1,10 @@
 "use client"
 import useCategories from "@hooks/useCategories";
-import Image from "next/image";
 import { LuLoaderCircle } from "react-icons/lu";
-import 'swiper/css';
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import CategoryItem from "../category-item/CategoryItem";
+import 'swiper/css';
 
 const CategorySlider = () => {
   const {data: categories, isLoading} = useCategories();
@@ -35,10 +35,7 @@ const CategorySlider = () => {
           >
             {categories?.data.map((item) => (
               <SwiperSlide key={item._id}>
-                <div className="border border-green-500 p-2 rounded-2xl overflow-hidden">
-                  <Image src={item.image} alt="category-slider" height={150} width={220} className="w-full h-[150px] object-contain" />
-                  <h3 className="text-green-600 text-xl text-center my-3 mx-2"> {item.name} </h3>
-                </div>
+                <CategoryItem img={item.image} name={item.name} />
               </SwiperSlide>
             ))}
         </Swiper>

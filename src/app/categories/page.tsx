@@ -1,8 +1,15 @@
+import { Metadata } from "next"
+import Categories from "./categories";
 
-function Categories() {
+export const metadata: Metadata = {
+  title: 'Categories'
+}
+
+function CategoriesPage() {
   return (
-    <div>Categories</div>
+    <Categories />
   )
 }
 
-export default Categories
+export default CategoriesPage;
+
