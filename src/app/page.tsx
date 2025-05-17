@@ -6,7 +6,7 @@ import useProducts from "@hooks/useProducts";
 import { LuLoaderCircle } from "react-icons/lu";
 
 export default function Home() {
-  const {data: products, isLoading} = useProducts(1);
+  const {products, isLoading} = useProducts(1);
   if (isLoading) {
     return <div className="flex justify-center items-center h-screen">
       <LuLoaderCircle className="animate-spin size-10" />

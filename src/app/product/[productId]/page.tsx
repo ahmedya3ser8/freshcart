@@ -1,8 +1,16 @@
+import React from "react";
+import ProductDetails from "../ProductDetails";
+import { Metadata } from "next";
 
-const ProductDetails = ({params}: {params: {productId: string}}) => {
+export const metadata: Metadata = {
+  title: 'Product Details'
+} 
+
+const ProductDetailsPage = ({ params }: { params: Promise<{productId: string}>}) => {
+  const { productId } = React.use(params);
   return (
-    <div>ProductDetails / {params.productId}</div>
+    <ProductDetails productId={productId} />
   )
 }
 
-export default ProductDetails;
+export default ProductDetailsPage;

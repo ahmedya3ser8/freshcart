@@ -4,9 +4,11 @@ import Link from "next/link"
 import logoImg from '@assets/images/freshcart-logo.svg'
 import { FaFacebook, FaGithub, FaXTwitter, FaLinkedin, FaCartShopping, FaHeart } from "react-icons/fa6";
 import { usePathname } from "next/navigation";
+import useCart from "@hooks/useCart";
 
 export const Header = () => {
   const pathName = usePathname();
+  const { cartProducts } = useCart()
   return (
     <header className="py-4 bg-gray-100 fixed w-full z-[999]">
       <div className="container">
@@ -42,11 +44,13 @@ export const Header = () => {
               <a href="https://www.linkedin.com/in/ahmed-yasser-21382a267" target="_blank" className="text-gray-400 p-2 text-lg font-semibold">
                 <FaLinkedin className="size-5" />
               </a>
-              <Link href='/cart' className={`text-gray-400 p-2 text-lg font-semibold ${pathName === '/cart' ? 'text-[#374151]' : ''}`}>
+              <Link href='/cart' className={`text-gray-400 p-2 text-lg font-semibold relative ${pathName === '/cart' ? 'text-[#374151]' : ''}`}>
                 <FaCartShopping className="size-5" />
+                <span className="absolute -top-[3px] size-5 rounded-full text-center leading-[20px] border border-white text-[15px] bg-green-500 text-white right-0">{cartProducts?.numOfCartItems}</span>
               </Link>
-              <Link href='/wishlist' className={`text-gray-400 p-2 text-lg font-semibold ${pathName === '/wishlist' ? 'text-[#374151]' : ''}`}>
+              <Link href='/wishlist' className={`text-gray-400 p-2 text-lg font-semibold relative ${pathName === '/wishlist' ? 'text-[#374151]' : ''}`}>
                 <FaHeart className="size-5" />
+                <span className="absolute -top-[3px] size-5 rounded-full text-center leading-[20px] border border-white text-[15px] bg-green-500 text-white right-0">{1}</span>
               </Link>
               <li>
                 <Link href="/auth/register" className={`text-gray-400 p-2 text-lg font-semibold ${pathName === '/auth/register' ? 'text-[#374151]' : ''}`}>Register</Link>

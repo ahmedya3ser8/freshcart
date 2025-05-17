@@ -7,7 +7,7 @@ import { LuLoaderCircle } from "react-icons/lu";
 const Products = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchProducts, setSearchProducts] = useState('');
-  const {data: products, isLoading} = useProducts(currentPage);
+  const {products, isLoading} = useProducts(currentPage);
   const totalPages = products?.metadata.numberOfPages ?? 1;
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) {

@@ -1,50 +1,15 @@
 "use client"
+import useProducts from "@hooks/useProducts";
 import { IProduct } from "@interfaces/iproduct";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios, { isAxiosError } from "axios";
 import Image from "next/image";
-import { FaStar } from "react-icons/fa";
-import { FiLoader } from "react-icons/fi";
-import toast from 'react-hot-toast';
-import { FaHeart } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
-
-type TResponse = {
-  message: string,
-  numOfCartItems: number
-}
-
-const addProductToCart = async (productId: string) => {
-  try {
-    const res = await axios.post<TResponse>(`https://ecommerce.routemisr.com/api/v1/cart`, { productId }, {
-      headers: {
-        token: localStorage.getItem('userToken')
-      }
-    });
-    return res.data;
-  } catch (error) {
-    if (isAxiosError(error)) {
-      return error.response?.data.message || error.message;
-    } else {
-      return 'an unexpected error'
-    }
-  }
-}
+import { FaStar } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa6";
+import { FiLoader } from "react-icons/fi";
 
 const ProductItem = ({ id, imageCover, title, price, category, ratingsAverage } : IProduct) => {
-  const queryClient = useQueryClient();
   const router = useRouter();
-  const { mutate, isPending } = useMutation<TResponse>({
-    mutationKey: ['addProductToCart', id],
-    mutationFn: () => addProductToCart(id),
-    onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ['cart'] });
-      toast.success(data.message);
-    },
-    onError: (err: Error) => {
-      toast.error(err.message);
-    }
-  })
+  const { isPending, mutate } = useProducts(1, id);
   return (
     <div className="product p-3 border border-green-500 rounded-md">
       <div className="product_image relative">
