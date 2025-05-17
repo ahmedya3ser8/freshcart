@@ -1,7 +1,9 @@
 "use client"
 import notFound from '@assets/lottieFiles/notFound.json'
-import Lottie from 'lottie-react'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
+
+const Lottie = dynamic(() => import('lottie-react'), {ssr: false})
 
 export default function NotFound() {
   return (

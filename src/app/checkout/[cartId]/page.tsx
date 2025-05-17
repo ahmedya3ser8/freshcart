@@ -1,8 +1,9 @@
+import React from "react";
 
-const CheckoutPage = ({params}: {params: {cartId: string}}) => {
-  console.log(params.cartId);
+const CheckoutPage = ({params}: {params: Promise<{cartId: string}>}) => {
+  const { cartId } = React.use(params);
   return (
-    <div>Checkout / {params.cartId}</div>
+    <div>Checkout / {cartId}</div>
   )
 }
 
