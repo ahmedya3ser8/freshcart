@@ -21,32 +21,28 @@ type TAddProductToCart = {
 
 const getAllProducts = async (page: number) => {
   try {
-    const res = await axios.get<TResponse>(`https://ecommerce.routemisr.com/api/v1/products`, {
+    const res = await axios.get<TResponse>(`/api/v1/products`, {
       params: { limit: 10, page }
     });
     return res.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      return error.response?.data.message || error.message;
+      throw new Error(error.response?.data.message || error.message);
     } else {
-      return 'an unexpected error'
+      throw new Error("an unexpected error");
     }
   }
 }
 
 const addProductToCart = async (productId: string) => {
   try {
-    const res = await axios.post<TAddProductToCart>(`https://ecommerce.routemisr.com/api/v1/cart`, { productId }, {
-      headers: {
-        token: localStorage.getItem('userToken')
-      }
-    });
+    const res = await axios.post<TAddProductToCart>(`/api/v1/cart`, { productId });
     return res.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      return error.response?.data.message || error.message;
+      throw new Error(error.response?.data.message || error.message);
     } else {
-      return 'an unexpected error'
+      throw new Error("an unexpected error");
     }
   }
 }

@@ -14,7 +14,7 @@ type TResponse = {
 const actAuthLogin = createAsyncThunk('auth/actAuthLogin', async (formData: TFormData, thunkAPI) => {
   const { rejectWithValue } = thunkAPI;
   try {
-    const res = await axios.post<TResponse>(`https://ecommerce.routemisr.com/api/v1/auth/signin`, formData);
+    const res = await axios.post<TResponse>(`/api/v1/auth/signin`, formData);
     return res.data;
   } catch (error) {
     if (isAxiosError(error)) {

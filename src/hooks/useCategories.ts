@@ -8,13 +8,13 @@ type TResponse = {
 
 const getAllCategories = async () => {
   try {
-    const res = await axios.get<TResponse>(`https://ecommerce.routemisr.com/api/v1/categories`)
+    const res = await axios.get<TResponse>(`/api/v1/categories`)
     return res.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      return error.response?.data.message || error.message;
+      throw new Error(error.response?.data.message || error.message);
     } else {
-      return 'an unexpected error'
+      throw new Error("an unexpected error");
     }
   }
 }

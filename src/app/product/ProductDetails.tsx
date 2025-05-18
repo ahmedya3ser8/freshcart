@@ -23,9 +23,9 @@ const getSpecificProduct = async (productId: string) => {
     return res.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      return error.response?.data.message || error.message;
+      throw new Error(error.response?.data.message || error.message);
     } else {
-      return 'an unexpected error'
+      throw new Error("an unexpected error");
     }
   }
 }

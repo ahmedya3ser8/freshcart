@@ -14,83 +14,52 @@ type TUpdatingState = { productId: string; action: "plus" | "minus" } | null;
 
 const getLoggedUserCart = async () => {
   try {
-    const res = await axios.get<TResponse>(
-      `https://ecommerce.routemisr.com/api/v1/cart`,
-      {
-        headers: {
-          token: localStorage.getItem("userToken"),
-        },
-      }
-    );
+    const res = await axios.get<TResponse>( `/api/v1/cart`);
     return res.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      return error.response?.data.message || error.message;
+      throw new Error(error.response?.data.message || error.message);
     } else {
-      return "an unexpected error";
+      throw new Error("an unexpected error");
     }
   }
 };
 
 const removeSpecificCartItem = async (productId: string) => {
   try {
-    const res = await axios.delete(
-      `https://ecommerce.routemisr.com/api/v1/cart/${productId}`,
-      {
-        headers: {
-          token: localStorage.getItem("userToken"),
-        },
-      }
-    );
+    const res = await axios.delete(`/api/v1/cart/${productId}`);
     return res.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      return error.response?.data.message || error.message;
+      throw new Error(error.response?.data.message || error.message);
     } else {
-      return "an unexpected error";
+      throw new Error("an unexpected error");
     }
   }
 };
 
 const updateCartProductQuantity = async (productId: string, count: number) => {
   try {
-    const res = await axios.put(
-      `https://ecommerce.routemisr.com/api/v1/cart/${productId}`,
-      {
-        count
-      },
-      {
-        headers: {
-          token: localStorage.getItem("userToken"),
-        },
-      }
-    );
+    const res = await axios.put(`/api/v1/cart/${productId}`, { count } );
     return res.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      return error.response?.data.message || error.message;
+      throw new Error(error.response?.data.message || error.message);
     } else {
-      return "an unexpected error";
+      throw new Error("an unexpected error");
     }
   }
 }
 
 const clearUserCart = async () => {
   try {
-    const res = await axios.delete(
-      `https://ecommerce.routemisr.com/api/v1/cart`,
-      {
-        headers: {
-          token: localStorage.getItem("userToken"),
-        },
-      }
-    );
+    const res = await axios.delete(`/api/v1/cart`);
     return res.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      return error.response?.data.message || error.message;
+      throw new Error(error.response?.data.message || error.message);
     } else {
-      return "an unexpected error";
+      throw new Error("an unexpected error");
     }
   }
 }

@@ -2,23 +2,44 @@
 import { createSlice } from "@reduxjs/toolkit";
 import actAuthRegister from "./act/actAuthRegister";
 import actAuthLogin from "./act/actAuthLogin";
+import { jwtDecode } from "jwt-decode";
+
+type TToken = {
+  id: string,
+  name: string,
+  role: string,
+  iat: string,
+  exp: string
+}
 
 interface IAuthState {
   loading: 'idle' | 'pending' | 'succeeded' | 'failed',
   error: string | null,
-  token: string | null
+  token: string | null,
+  user: TToken | null
 }
 
 const initialState: IAuthState = {
   loading: 'idle',
   error: null,
-  token: null
+  token: null,
+  user: null
 }
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    setToken: (state, action) => {
+      state.token = action.payload;
+      state.user = jwtDecode(action.payload);
+    },
+    logout: (state) => {
+      state.token = null;
+      state.user = null;
+      localStorage.removeItem('userToken');
+    }
+  },
   extraReducers: (builder) => {
     // register
     builder.addCase(actAuthRegister.pending, (state) => {
@@ -43,6 +64,7 @@ const authSlice = createSlice({
       state.loading = 'succeeded';
       state.token = action.payload.token;
       localStorage.setItem('userToken', action.payload.token);
+      state.user = jwtDecode(action.payload.token)
     })
     builder.addCase(actAuthLogin.rejected, (state, action) => {
       state.loading = 'failed';
@@ -54,3 +76,4 @@ const authSlice = createSlice({
 })
 
 export default authSlice.reducer;
+export const { setToken, logout } = authSlice.actions;
