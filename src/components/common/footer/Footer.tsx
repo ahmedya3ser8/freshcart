@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 export const Footer = () => {
   return (
-    <footer className="py-5 bg-gray-100">
+    <footer className="py-5 bg-gray-100 dark:bg-[#121212]">
       <div className="container">
         <h2 className="text-2xl mb-2">Welcome <span className="text-green-500">(user)</span> Get the FreshCart app</h2>
         <p className="text-gray-400 mb-4">we will send you a link , open it on your phone to download the app</p>

@@ -1,6 +1,7 @@
 import { IProduct } from "@interfaces/iproduct"
 import { keepPreviousData, useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import axios, { isAxiosError } from "axios"
+import { useState } from "react"
 import toast from "react-hot-toast"
 
 type TResponse = {
@@ -49,24 +50,29 @@ const addProductToCart = async (productId: string) => {
 
 const useProducts = (page: number, id?: string) => {
   const queryClient = useQueryClient();
+  const [productId, setProductId] = useState<string | null>('')
   const { data: products, isLoading } = useQuery<TResponse>({
     queryKey: ['products', page],
     queryFn: () => getAllProducts(page),
     placeholderData: keepPreviousData,
     staleTime:  5 * 60 * 1000
   })
-  const { mutate, isPending } = useMutation<TAddProductToCart>({
+  const { mutate, isPending } = useMutation({
     mutationKey: ['addProductToCart', id],
-    mutationFn: () => addProductToCart(id as string),
+    mutationFn: addProductToCart,
+    onMutate: (productId) => {
+      setProductId(productId);
+    },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['cart'] });
       toast.success(data.message);
     },
+    onSettled: () => setProductId(null),
     onError: (err: Error) => {
       toast.error(err.message);
     }
   })
-  return {products, isLoading, mutate, isPending}
+  return {products, isLoading, mutate, isPending, productId}
 }
 
 export default useProducts;

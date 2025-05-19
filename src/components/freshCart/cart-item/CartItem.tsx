@@ -9,14 +9,14 @@ const CartItem = ({ product, count, price }: ICartProduct) => {
   const { deletingId, updating, mutateRemoveItem, mutateUpdateQuantity } = useCart()
   return (
     <div key={product._id} className="cart_product flex items-center gap-4 border-b border-gray-300 py-5 first:pt-0 last:border-b-0" >
-      <div className="image">
-        <Image src={product.imageCover} alt="cart-product" width={128} height={180} />
+      <div className="product_image">
+        <Image src={product.imageCover} alt="product-product" width={128} height={180} />
       </div>
       <div className="cart_product_body flex flex-1 justify-between">
         <div className="cart_product_caption">
-          <h3 className="text-gray-500 text-sm mb-1"> {product.category.name} </h3>
+          <h3 className="text-gray-500 dark:text-gray-200 text-sm mb-1"> {product.category.name} </h3>
           <h4 className="text-green-500 text-lg font-semibold"> {product.title.split(" ", 2).join(" ")} </h4>
-          <div className="cart_product_rate flex items-center gap-1 bg-[#fafafa] w-fit p-1">
+          <div className="cart_product_rate flex items-center gap-1 bg-[#fafafa] dark:bg-[#121212] w-fit p-1">
             <span>{product.ratingsAverage}</span>
             <FaStar className="text-yellow-400" />
           </div>

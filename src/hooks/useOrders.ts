@@ -21,7 +21,7 @@ type TFormData = {
 
 const cashOrder = async ({cartId, formData}: TFormData) => {
   try {
-    const res = await axios.post(`https://ecommerce.routemisr.com/api/v1/orders/${cartId}`, {shippingAddress: formData});
+    const res = await axios.post(`/api/v1/orders/${cartId}`, {shippingAddress: formData});
     return res.data;
   } catch (error) {
     if (isAxiosError(error)) {
@@ -34,7 +34,7 @@ const cashOrder = async ({cartId, formData}: TFormData) => {
 
 const onlineOrder = async ({cartId, formData}: TFormData) => {
   try {
-    const res = await axios.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=http://localhost:3000`, {shippingAddress: formData});
+    const res = await axios.post(`/api/v1/orders/checkout-session/${cartId}?url=http://localhost:3000`, {shippingAddress: formData});
     return res.data;
   } catch (error) {
     if (isAxiosError(error)) {
@@ -47,7 +47,7 @@ const onlineOrder = async ({cartId, formData}: TFormData) => {
 
 const getUserOrders = async (userId: string) => {
   try {
-    const res = await axios.get(`https://ecommerce.routemisr.com/api/v1/orders/user/${userId}`);
+    const res = await axios.get(`/api/v1/orders/user/${userId}`);
     return res.data;
   } catch (error) {
     if (isAxiosError(error)) {

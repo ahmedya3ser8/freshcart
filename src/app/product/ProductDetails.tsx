@@ -71,7 +71,7 @@ const ProductDetails = ({ productId }: {productId: string}) => {
               <span>{product?.data.ratingsAverage}</span>
             </div>
           </div>
-          <button onClick={() => mutate()} className="w-full p-2 bg-green-500 text-white rounded-md">
+          <button onClick={() => mutate(productId)} className="w-full p-2 bg-green-500 text-white rounded-md">
             {isPending ? <FiLoader className="animate-spin mx-auto size-6" /> : 'add to cart'}
           </button>
         </div>

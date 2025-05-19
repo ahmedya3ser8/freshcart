@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Wishlist from "./Wishlist";
 
 export const metadata: Metadata = {
   title: 'Wishlist'
@@ -6,7 +7,7 @@ export const metadata: Metadata = {
 
 const WishlistPage = () => {
   return (
-    <div>Wishlist</div>
+    <Wishlist />
   )
 }
 

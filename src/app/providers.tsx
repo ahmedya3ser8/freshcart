@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
 import { store } from "@store/index";
 import { Provider } from "react-redux";
+import { ThemeProvider } from 'next-themes';
 import '@services/axios.global'
 
 const Providers = ({children}: {children: React.ReactNode}) => {
@@ -10,7 +11,9 @@ const Providers = ({children}: {children: React.ReactNode}) => {
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
-        {children}
+        <ThemeProvider attribute='class' defaultTheme="system" enableSystem>
+          {children}
+        </ThemeProvider>
       </QueryClientProvider>
     </Provider>
   )

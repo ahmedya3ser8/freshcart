@@ -15,7 +15,7 @@ const AllOrders = () => {
       <h2 className="text-text text-3xl mb-4">Orders Details</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {orders?.map((order) => (
-          <div key={order.id} className="bg-white rounded-md p-5">
+          <div key={order.id} className="bg-white dark:bg-[#121212] rounded-md p-5">
             <div className="flex justify-between items-center mb-3">
               <h4 className="text-green-500 text-2xl">Order ID: {order.id} </h4>
               <div className="flex gap-2">
@@ -47,14 +47,14 @@ const AllOrders = () => {
               ))}
             </div>
             <div className="grid grid-cols-1 md:grid-cols-[60%_minmax(0,1fr)] gap-5 py-5">
-              <ul className="bg-[#F9F9F9] rounded-md p-4">
+              <ul className="bg-[#F9F9F9] dark:bg-[#121212] rounded-md p-4">
                 <li className="mb-2 text-text font-medium">Mobile: <span className="text-gray-300"> {order.shippingAddress.phone} </span></li>
                 <li className="mb-2 text-text font-medium">Address: <span className="text-gray-300">{order.shippingAddress.city}</span></li>
                 <li className="mb-2 text-text font-medium">City: <span className="text-gray-300">{order.shippingAddress.city}</span></li>
                 <li className="mb-2 text-text font-medium">Country: <span className="text-gray-300">Egypt</span></li>
                 <li className="mb-2 text-text font-medium">Payment Method: <span className="text-gray-300">{order.paymentMethodType}</span></li>
               </ul>
-              <ul className="bg-[#F9F9F9] rounded-md p-4">
+              <ul className="bg-[#F9F9F9] dark:bg-[#121212] rounded-md p-4">
                 <li className="flex justify-between items-center mb-3">
                   <span className="text-text">Subtotal</span>
                   <span className="text-gray-300"> {order.totalOrderPrice} EGP</span>
