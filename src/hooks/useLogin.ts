@@ -17,7 +17,7 @@ export default function useLogin() {
     dispatch(actAuthLogin(data)).unwrap().then((res) => {
       if (res.message === 'success') {
         reset();
-        router.push('/')
+        router.push('/');
       }
     })
   }
