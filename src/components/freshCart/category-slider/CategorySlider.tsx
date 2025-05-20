@@ -15,7 +15,7 @@ const CategorySlider = () => {
   }
   return (
     <section className="py-6">
-      <h2 className="text-green-600 mb-4 font-bold text-3xl">Popular Categories</h2>
+      <h2 className="text-green-600 mb-4 font-bold text-2xl md:text-3xl">Popular Categories</h2>
         <Swiper          
           spaceBetween={20}
           loop={true}
