@@ -1,5 +1,6 @@
 import { Metadata } from "next"
 import Register from "./register"
+import PublicRoute from "@components/auth/PublicRoute"
 
 export const metadata: Metadata = {
   title: 'Register'
@@ -7,7 +8,9 @@ export const metadata: Metadata = {
 
 function RegisterPage() {
   return (
-    <Register />
+    <PublicRoute>
+      <Register />
+    </PublicRoute>
   )
 }
 

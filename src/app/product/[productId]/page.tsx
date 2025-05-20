@@ -1,6 +1,7 @@
 import React from "react";
 import ProductDetails from "../ProductDetails";
 import { Metadata } from "next";
+import ProtectedRoute from "@components/auth/ProtectedRoute";
 
 export const metadata: Metadata = {
   title: 'Product Details'
@@ -9,7 +10,9 @@ export const metadata: Metadata = {
 const ProductDetailsPage = ({ params }: { params: Promise<{productId: string}>}) => {
   const { productId } = React.use(params);
   return (
-    <ProductDetails productId={productId} />
+    <ProtectedRoute>
+      <ProductDetails productId={productId} />
+    </ProtectedRoute>
   )
 }
 

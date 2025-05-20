@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Cart from "./cart";
+import ProtectedRoute from "@components/auth/ProtectedRoute";
 
 export const metadata: Metadata = {
   title: 'Cart'
@@ -7,7 +8,9 @@ export const metadata: Metadata = {
 
 const CartPage = () => {
   return (
-    <Cart />
+    <ProtectedRoute>
+      <Cart />
+    </ProtectedRoute>
   );
 };
 

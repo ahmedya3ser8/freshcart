@@ -1,4 +1,5 @@
 "use client"
+import ProtectedRoute from "@components/auth/ProtectedRoute";
 import CategorySlider from "@components/freshCart/category-slider/CategorySlider";
 import MainSlider from "@components/freshCart/main-slider/MainSlider";
 import ProductItem from "@components/freshCart/product-item/ProductItem";
@@ -13,7 +14,7 @@ export default function Home() {
     </div>
   }
   return (
-    <>
+    <ProtectedRoute>
       <MainSlider />
       <CategorySlider />
       <section className="py-6">
@@ -24,6 +25,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-    </>
+    </ProtectedRoute>
   );
 }

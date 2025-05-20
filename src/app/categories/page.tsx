@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Categories from "./categories";
+import ProtectedRoute from "@components/auth/ProtectedRoute";
 
 export const metadata: Metadata = {
   title: 'Categories'
@@ -7,7 +8,9 @@ export const metadata: Metadata = {
 
 function CategoriesPage() {
   return (
-    <Categories />
+    <ProtectedRoute>
+      <Categories />
+    </ProtectedRoute>
   )
 }
 

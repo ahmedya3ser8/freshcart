@@ -1,5 +1,6 @@
 import { Metadata } from "next"
 import Login from "./login"
+import PublicRoute from "@components/auth/PublicRoute"
 
 export const metadata: Metadata = {
   title: 'Login'
@@ -7,7 +8,9 @@ export const metadata: Metadata = {
 
 function LoginPage() {
   return (
-    <Login />
+    <PublicRoute>
+      <Login />
+    </PublicRoute>
   )
 }
 

@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Wishlist from "./Wishlist";
+import ProtectedRoute from "@components/auth/ProtectedRoute";
 
 export const metadata: Metadata = {
   title: 'Wishlist'
@@ -7,7 +8,9 @@ export const metadata: Metadata = {
 
 const WishlistPage = () => {
   return (
-    <Wishlist />
+    <ProtectedRoute>
+      <Wishlist />
+    </ProtectedRoute>
   )
 }
 
