@@ -8,11 +8,11 @@ import { FiLoader, FiMinus, FiPlus } from "react-icons/fi";
 const CartItem = ({ product, count, price }: ICartProduct) => {
   const { deletingId, updating, mutateRemoveItem, mutateUpdateQuantity } = useCart()
   return (
-    <div key={product._id} className="cart_product flex items-center gap-4 border-b border-gray-300 py-5 first:pt-0 last:border-b-0" >
+    <div key={product._id} className="cart_product flex flex-col lg:flex-row items-center gap-4 border-b border-gray-300 py-5 first:pt-0 last:border-b-0" >
       <div className="product_image">
-        <Image src={product.imageCover} alt="product-product" width={128} height={180} />
+        <Image src={product.imageCover} alt="product-product" width={128} height={180} className="w-full lg:w-[128px] h-[250px] lg:h-[180px] object-contain" />
       </div>
-      <div className="cart_product_body flex flex-1 justify-between">
+      <div className="cart_product_body flex flex-1 justify-between gap-5">
         <div className="cart_product_caption">
           <h3 className="text-gray-500 dark:text-gray-200 text-sm mb-1"> {product.category.name} </h3>
           <h4 className="text-green-500 text-lg font-semibold"> {product.title.split(" ", 2).join(" ")} </h4>

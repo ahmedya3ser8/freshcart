@@ -27,17 +27,17 @@ const Wishlist = () => {
   }
   return (
     <section className="py-6">
-      <h2 className="text-green-500 text-3xl font-medium">
+      <h2 className="text-green-500 text-2xl lg:text-3xl font-medium">
         Wishlist 
         <span className="text-gray-700 dark:text-white text-lg ms-1"> {data?.count} items </span>
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
         {data?.data.map((product) => (
-          <div key={product.id} className="product flex items-center gap-4 bg-[#f9f9f9] dark:bg-[#121212] rounded-md p-4">
+          <div key={product.id} className="product flex flex-col lg:flex-row items-center gap-4 bg-[#f9f9f9] dark:bg-[#121212] rounded-md p-2 lg:p-4">
             <div className="product_image">
-              <Image src={product.imageCover} alt="product-image" width={128} height={180} />
+              <Image src={product.imageCover} alt="product-image" width={128} height={180} className="w-full lg:w-[128px] h-[250px] lg:h-[180px] object-contain" />
             </div>
-            <div className="cart_product_body flex items-center flex-1 justify-between">
+            <div className="cart_product_body flex items-center flex-1 justify-between gap-5">
               <div className="cart_product_content">
                 <h3 className="text-gray-500 dark:text-gray-200 text-sm mb-1">{product.category.name}</h3>
                 <h4 className="text-green-500 text-lg font-semibold">{product.title.split(' ', 2).join(' ')}</h4>

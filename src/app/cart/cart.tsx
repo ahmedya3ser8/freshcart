@@ -19,7 +19,7 @@ const Cart = () => {
   return (
     <section className="py-6">
       <div className="cart_header flex justify-between items-center">
-        <h2 className="text-green-500 text-3xl font-medium">
+        <h2 className="text-green-500 text-2xl lg:text-3xl font-medium">
           Cart
           <span className="text-gray-700 dark:text-white text-lg ms-1">
             {cartProducts?.numOfCartItems} items
@@ -29,8 +29,8 @@ const Cart = () => {
           {isPending ? <FiLoader className="animate-spin" /> : <> Remove All <FaTrash /> </>}
         </button>
       </div>
-      <div className="cart_body flex gap-4 mt-4">
-        <div className="w-full bg-gray-100 dark:bg-[#121212] p-4 rounded-md">
+      <div className="cart_body flex flex-col lg:flex-row gap-4 mt-4">
+        <div className="w-full bg-gray-100 dark:bg-[#121212] p-2 lg:p-4 rounded-md">
           {cartProducts?.data.products && cartProducts?.data.products.length > 0 ? cartProducts?.data.products.map((product) => (
             <CartItem key={product.product.id} {...product} />
           )) : <div className="flex justify-center items-center flex-col h-full">
@@ -38,7 +38,7 @@ const Cart = () => {
             <Link href='/products' className="text-green-500 underline">Go to Products</Link>
           </div>}
         </div>
-        <div className="w-[450px] bg-gray-100 dark:bg-[#121212] p-4 rounded-md h-fit">
+        <div className="w-full lg:w-[450px] bg-gray-100 dark:bg-[#121212] p-4 rounded-md h-fit">
           <h2 className="mb-4 text-2xl text-gray-700 dark:text-white">Order Summary</h2>
           <ul className="border-b border-gray-300">
             <li className="flex justify-between mb-4">

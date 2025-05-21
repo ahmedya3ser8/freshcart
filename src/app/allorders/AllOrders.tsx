@@ -12,12 +12,12 @@ const AllOrders = () => {
   }
   return (
     <section className="py-6">
-      <h2 className="text-text text-3xl mb-4">Orders Details</h2>
+      <h2 className="text-xl lg:text-3xl mb-4">Orders Details</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {orders?.map((order) => (
           <div key={order.id} className="bg-white dark:bg-[#121212] rounded-md p-5">
             <div className="flex justify-between items-center mb-3">
-              <h4 className="text-green-500 text-2xl">Order ID: {order.id} </h4>
+              <h4 className="text-green-500 text-xl lg:text-2xl">Order ID: {order.id} </h4>
               <div className="flex gap-2">
                 {order.isPaid ? <>
                   <span className="text-[#f97316] bg-[#fff7ed] p-2 rounded-md text-sm">Unpaid</span>

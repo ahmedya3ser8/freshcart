@@ -44,7 +44,7 @@ const ProductDetails = ({ productId }: {productId: string}) => {
   }
   return (
     <section className="py-6">
-      <div className="product flex flex-col md:flex-row items-center gap-5">
+      <div className="product flex flex-col md:flex-row items-center gap-5 p-4 md:p-0">
         <Swiper className="product_image w-full md:w-[300px] h-[300px] md:h-[350px]" 
           spaceBetween={50} loop={true}
           modules={[Autoplay, EffectFade]} 

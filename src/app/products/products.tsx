@@ -23,8 +23,8 @@ const Products = () => {
   }
   return (
     <section className="py-6">
-      <input type="search" value={searchProducts} onChange={(e) => setSearchProducts(e.target.value)} placeholder="search by title..." className="block w-[80%] mx-auto p-2 outline-none border border-gray-400 rounded-md" />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 mt-8">
+      <input type="search" value={searchProducts} onChange={(e) => setSearchProducts(e.target.value)} placeholder="search by title..." className="block w-full lg:w-[80%] mx-auto p-2 outline-none border border-gray-400 rounded-md" />
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 mt-6 lg:mt-8">
         {filteredProducts!.length > 0 ? filteredProducts?.map((product) => (
           <ProductItem key={product.id} {...product} />
         )) : <div className="col-span-5 text-center text-xl">No products found matching your filters.</div>}
