@@ -9,7 +9,7 @@ const Register = () => {
   return (
     <section className="py-6">
       <h2 className="mb-4 text-2xl text-green-500 font-semibold text-center">Register Now</h2>
-      <form onSubmit={handleSubmit(submitForm)} className="w-full md:w-1/2 mx-auto">
+      <form onSubmit={handleSubmit(submitForm)} className="w-full md:w-1/2 mx-auto border border-green-500 rounded-md p-4">
         <Input label="Name:" name="name" register={register} error={errors.name?.message as string} />
         <Input label="Email:" type="email" name="email" register={register} error={errors.email?.message as string} />
         <Input label="Password:" type="password" name="password" register={register} error={errors.password?.message as string} />

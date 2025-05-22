@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios, { isAxiosError } from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useAppSelector } from "@store/hooks";
 
 type TResponse = {
   numOfCartItems: number;
@@ -14,7 +15,7 @@ type TUpdatingState = { productId: string; action: "plus" | "minus" } | null;
 
 const getLoggedUserCart = async () => {
   try {
-    const res = await axios.get<TResponse>( `/api/v1/cart`);
+    const res = await axios.get<TResponse>(`/api/v1/cart`);
     return res.data;
   } catch (error) {
     if (isAxiosError(error)) {
@@ -40,7 +41,7 @@ const removeSpecificCartItem = async (productId: string) => {
 
 const updateCartProductQuantity = async (productId: string, count: number) => {
   try {
-    const res = await axios.put(`/api/v1/cart/${productId}`, { count } );
+    const res = await axios.put(`/api/v1/cart/${productId}`, { count });
     return res.data;
   } catch (error) {
     if (isAxiosError(error)) {
@@ -66,11 +67,13 @@ const clearUserCart = async () => {
 
 export default function useCart() {
   const queryClient = useQueryClient();
+  const { token } = useAppSelector(state => state.auth);
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [updating, setUpdating] = useState<TUpdatingState>(null);
   const { data: cartProducts, isLoading } = useQuery<TResponse>({
     queryKey: ["cart"],
     queryFn: getLoggedUserCart,
+    enabled: !!token,
     staleTime: 5 * 60 * 1000,
   });
   const { mutate: mutateRemoveItem } = useMutation({

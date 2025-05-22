@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios, { isAxiosError } from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useAppSelector } from "@store/hooks";
 
 type TResponse = {
   count: number,
@@ -50,11 +51,13 @@ const addProductToWishlist = async (productId: string) => {
 
 export default function useWishlist() {
   const queryClient = useQueryClient();
+  const { token } = useAppSelector(state => state.auth);
   const [removingId, setRemovingId] = useState<string | null>('');
   const [addingId, setAddingId] = useState<string | null>('');
   const { data, isLoading } = useQuery<TResponse>({
     queryKey: ['wishlist'],
     queryFn: getLoggedUserWishlist,
+    enabled: !!token,
     staleTime: 5 * 60 * 1000
   })
   const { mutate: mutateRemoveProductFromWishlsit } = useMutation({
